@@ -1,7 +1,6 @@
 require 'json'
 require 'httpclient'
 require 'nokogiri'
-require 'ffi/aspell'
 require 'sinatra'
 require 'yomu'
 require 'open-uri'
