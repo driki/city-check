@@ -23,6 +23,9 @@ get '/check?*' do
   response_end_time = Time.now
   checks[:response_time] = ((response_end_time - response_start_time)/3600)*1000
 
+  # TODO: Check to see if the web server is using HTTP Compression
+  # -H 'Accept-Encoding: gzip,deflate'
+
   doc = Nokogiri::HTML(response.body)
 
   # Remove extraneous styles

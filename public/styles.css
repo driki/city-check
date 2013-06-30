@@ -190,6 +190,10 @@ ol.numbered > li {
 
 }
 
+.actionSteps {
+  display: inline-block;
+
+}
 
 #footer {
 	width: 100%;
@@ -205,7 +209,7 @@ ol.numbered > li {
 	position: absolute;
 	width: 186px;
 	height: 30px;
-	background: url(../images/labelPress.png) no-repeat;
+	background: url(images/labelPress.png) no-repeat;
 	top: -10px;
 	right: 30px;
 }
@@ -221,7 +225,7 @@ ol.numbered > li {
 .scroll-to-fixed-fixed {
 	/*border-top: 10px solid #FF3F00;*/
     cursor: pointer;
-	background: url(../images/bg_arrowdown.png) no-repeat top center;
+	background: url(images/bg_arrowdown.png) no-repeat top center;
 }
 .footerRedBorder {
 
@@ -334,7 +338,7 @@ input:focus {
 }
 
 #fpurchase2 {
-	background:url('/images/bt_purchase2_default.png') no-repeat;
+	background:url('images/bt_purchase2_default.png') no-repeat;
 	width: 404px;
     height: 86px;
     border: none;
@@ -342,7 +346,7 @@ input:focus {
     margin-top: -15px;
 }
 #fpurchase2:hover {
-	background:url('/images/bt_purchase2_hover.png') no-repeat;
+	background:url('images/bt_purchase2_hover.png') no-repeat;
 	width: 404px;
     height: 86px;
     border: none;
