@@ -15,6 +15,8 @@ get '/check?*' do
   checks = Hash.new
   checks[:url] = params[:url]
 
+  # TODO: validate the page with W3C validator
+
   # Get the homepage
   response_start_time = Time.now
   response = @@http_client.get(url, :follow_redirect => true)
@@ -49,7 +51,7 @@ get '/check?*' do
   checks[:status] = response.http_header["Status"]
 
   # Check to see which vendor or tool is being used
-  vendor_regex = /(CivicPlus|GovOffice|Virtual Towns & Schools Website|www.qscend.com|www.cit-e.net)/
+  vendor_regex = /(www.gov-i.com|CivicPlus|GovOffice|Virtual Towns & Schools Website|www.qscend.com|www.cit-e.net)/
   response.body+get_all_hrefs(response.body).join =~ vendor_regex
   checks[:website_vendor] = $&
 
@@ -68,18 +70,18 @@ get '/check?*' do
   response.body =~ analytics_regex
   checks[:analytics_present] = $&
 
-  # TODO look for specific page content types
+  # TODO: look for specific page content types
   #* site:http://www.ci.watertown.ma.us/ About 9,010 results (0.18 seconds)
   #* site:http://www.ci.watertown.ma.us/ filetype:pdf About 919 results (0.51 seconds)
 
-  # TODO Look for the most recent fiscal year BUDGET document
+  # TODO: Look for the most recent fiscal year BUDGET document
   # points for CSV, EXCEL, minus points for PDF or PowerPoint
   # Accessible from the homepage
   # Narrative for the budget
   # Online checkbook register
   # Definition of technical terms
 
-  # TODO Look for poorly named CSS
+  # TODO: Look for poorly named CSS
 
   # TODO Look for voting records
   # TODO contact information and names for elected officials
@@ -142,19 +144,33 @@ get '/check?*' do
 
   # TODO look for a mobile version
 
-  # Count the number of images
+  # Count the number of images and how big they are
   links_size = doc.css('img').size
   checks[:number_of_images] = links_size
+  checks[:image_size] = 0
+  checks[:images] = doc.css('img').map {|link| link.attribute('src').to_s}.uniq.sort.delete_if {|href| href.empty?}
+  doc.css('img').each do |img_link|
+    img_url = img_link.attribute('src').to_s
+    begin
+      img_size = @@http_client.head(img_url).http_header['Content-Length'].first.to_i
+    rescue Exception => e
+      img_size = @@http_client.head(url+img_url).http_header['Content-Length'].first.to_i
+    end
+    checks[:image_size] += img_size
+  end
+
+  # TODO check files size of all images
 
   # Looks at all the links on the page
   links = get_all_hrefs(response.body)
   checks[:number_of_links] = links.size
   checks[:links] = get_all_hrefs(response.body)
-  if checks[:number_of_links] > 25
+  if checks[:number_of_links] > 50
     checks[:high_number_of_links] = true
   end
 
   # Check for underlying tech in the url
+  # TODO check only relative path urls
   tech_regex = /(\.asp|\.aspx|\.do|\.jsp|\.php)/
   if links.join.scan(tech_regex).length > 0
     checks[:displaying_tech_in_url] = true
@@ -195,7 +211,6 @@ def get_all_hrefs(html)
   hrefs = links.map {|link| link.attribute('href').to_s}.uniq.sort.delete_if {|href| href.empty?}
   return hrefs
 end
-
 
 # Remove superfluous whitespaces from the given string
 def safe_squeeze(value)
