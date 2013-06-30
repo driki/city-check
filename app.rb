@@ -1,6 +1,7 @@
 require 'json'
 require 'httpclient'
 require 'nokogiri'
+require 'selenium-webdriver'
 require 'sinatra'
 require 'yomu'
 require 'open-uri'
@@ -16,6 +17,17 @@ get '/check?*' do
   checks[:url] = params[:url]
 
   # TODO: validate the page with W3C validator
+
+  # TODO: Take a screenshot of the website
+  # width = 1024
+  # height = 728
+  # driver = Selenium::WebDriver.for :firefox
+  # driver.navigate.to 'http://domain.com'
+  # driver.execute_script %Q{
+  #   window.resizeTo(#{width}, #{height});
+  # }
+  # driver.save_screenshot('/tmp/screenshot.png')
+  # driver.quit
 
   # Get the homepage
   response_start_time = Time.now
