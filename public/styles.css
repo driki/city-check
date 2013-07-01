@@ -168,6 +168,16 @@ ol.numbered > li {
 }
 
 
+.pitch {
+  padding: 60px 0 90px 0;
+  width: 800px;
+  font-size: 30px;
+  text-align: left;
+  margin:0 auto;
+  font: 300 24px 'Oswald';
+  color: #777777;
+}
+
 .textGood {
 	color: #FF3F00;
 	/*text-shadow: 0px 0px 5px #000000;*/

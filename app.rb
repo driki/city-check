@@ -1,7 +1,6 @@
 require 'json'
 require 'httpclient'
 require 'nokogiri'
-require 'selenium-webdriver'
 require 'sinatra'
 require 'yomu'
 require 'open-uri'
@@ -98,16 +97,19 @@ get '/check?*' do
 
   # TODO: Look for poorly named CSS
 
-  # TODO Look for voting records
-  # TODO contact information and names for elected officials
+  # TODO: Look for voting records
 
-  # TODO How many unique visitors do you have per month? via Compete
-  # TODO Your Alexa rating
+  # TODO: contact information and names for elected officials
 
-  # TODO Are meeting minutes available online?
+  # TODO: How many unique visitors do you have per month? via Compete
+
+  # TODO: Your Alexa rating
+
+  # TODO: Are meeting minutes available online?
+
   # Points for HTML, audio, video, minus for PDF only
 
-  # TODO Can we find elected official contact information easily?
+  # TODO: Can we find elected official contact information?
 
   # TODO Can we find building permit information
   # * Forms available online
