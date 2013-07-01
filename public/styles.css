@@ -214,17 +214,6 @@ ol.numbered > li {
     left: 0px;
 }
 
-
-#footerPress {
-	position: absolute;
-	width: 186px;
-	height: 30px;
-	background: url(images/labelPress.png) no-repeat;
-	top: -10px;
-	right: 30px;
-}
-
-
 .footer {
 	display: inline-block;
 	border-top: 10px solid #8f8f8f;
@@ -235,13 +224,7 @@ ol.numbered > li {
 .scroll-to-fixed-fixed {
 	/*border-top: 10px solid #FF3F00;*/
     cursor: pointer;
-	background: url(images/bg_arrowdown.png) no-repeat top center;
 }
-.footerRedBorder {
-
-
-}
-
 
 #footerInner {
 	width: 800px;
@@ -290,8 +273,6 @@ ol.numbered > li {
 	color: #FF3F00;
 	font-weight: bold;
 }
-
-
 
 input {
 	border:1px solid #cfcfcf;
