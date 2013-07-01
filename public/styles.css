@@ -59,10 +59,6 @@ ul, ol {
 }
 
 
-
-
-
-
 div.content {
     padding: 0 0 0 0;
     width: 800px;
@@ -91,8 +87,8 @@ ol.ideas > li {
     position: relative;
 }
 ol.ideas > li:before {
-    content: counter(item) "";
-    counter-increment: item;
+  content: counter(item) "";
+  counter-increment: item;
 	color: #ffffff;
 
 	font: 700 36px/75px 'Oswald';
